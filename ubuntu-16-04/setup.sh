@@ -80,4 +80,26 @@ sudo cp /etc/openvpn/keys/ca.crt ./client
 sudo cp /etc/openvpn/keys/ta.key ./client
 sudo curl ipinfo.io/ip > ./client/server.ip
 sudo cp ./client.conf ./client/client.conf
-echo "remote" `curl ipinfo.io/ip` "udp 1194" >> ./client/client.conf
+
+#####################################################################
+# Configure client.conf                                             #
+#####################################################################
+# Append server ip
+echo "remote" `curl ipinfo.io/ip` "1194 udp" >> ./client/client.conf
+# Append ca
+echo "<ca>" >> ./client/client.conf
+cat ./client/ca.crt >> ./client/client.conf
+echo "</ca>" >> ./client/client.conf
+# Append client cert
+echo "<cert>" >> ./client/client.conf
+cat ./client/client.crt >> ./client/client.conf
+echo "</cert>" >> ./client/client.conf
+# Append client key
+echo "<key>" >> ./client/client.conf
+cat ./client/client.key >> ./client/client.conf
+echo "</key>" >> ./client/client.conf
+# Append ta
+echo "key-direction 1" >> ./client/client.conf
+echo "<tls-auth>" >> ./client/client.conf
+cat ./client/ta.key >> ./client/client.conf
+echo "</tls-auth>" >> ./client/client.conf
