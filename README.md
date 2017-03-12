@@ -52,7 +52,7 @@ chmod +x ./setup.sh
 ```
 * When the execution is finished, copy the content of ./ubuntu-16-04/clinet/client/client.conf
 ```
-cat ./ubuntu-16-04/clinet/client/client.conf
+cat ./ubuntu-16-04/client/client.conf
 ```
 * Highlight the entire content of the client.conf print-out and copy into your clipboard
 * Logout from the virtual server:
