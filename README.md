@@ -36,11 +36,11 @@
 * Login into your instance using ssh from MacOS/Linux terminal or using Windows Putty
 * Clone this repo using git:
 ```
-git clone https://github.com/vkhazin/blocking-bash-outbound.git
+git clone https://github.com/vkhazin/blocking.wtf-outbound.git
 ```
 * Change into the directory:
 ```
-cd ./blocking-bash-outbound/ubuntu-16-04
+cd ./blocking.wtf-outbound/ubuntu-16-04
 ```
 * Enable execution of the setup script:
 ```
