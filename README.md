@@ -50,16 +50,16 @@ chmod +x ./setup.sh
 ```
 ./setup.sh
 ```
-* When the execution is finished, copy the content of ./client/client.conf
+* When the execution is finished, print out the content of ./client/client.conf
 ```
 cat ./client/client.conf
 ```
-* Highlight the entire content of the client.conf print-out and copy into your clipboard
+* Highlight the entire content of the client.conf print-out and copy into the clipboard using ctrl-c or command-c
 * Logout from the virtual server:
 ```
 exit
 ```
-* When back to your operating system, create a text file client.conf, paste content of the clipboard into the file, and save the file
+* When back to your operating system, create a text file client.conf, paste the content of the clipboard into the file, and save the file
 * Download and Install [OpenVpn Client](https://openvpn.net/index.php/open-source/downloads.html) or [Pritunl Client](https://client.pritunl.com/)
 * Using the installed import the clien.conf file to connect to the newly installed Vpn Server
 * Connect and verify that all your traffic now flows through the Vpn Server by accessing http://ipinfo.io
