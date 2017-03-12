@@ -6,7 +6,7 @@
 * No more: "Sorry this service is not available outside of Antarctica!"
 * Pay least amount of money for the service - $5/month or less
 
-# How is it different from commercial Vpn Services? #
+# How is it different from commercial Vpn Services #
 * Commercial Services are well known and hence are easy blocked 
 * Commercial Services carry detectable patterns, e.g. volume of traffic from a single/few ips
 * Involved parties can implement automated detection and blocking processes
@@ -19,17 +19,17 @@
 * You can re-provision vpn server often to minimize traceability and blocking
 * You can re-provision vpn server with a new vps provider/country to jump jurisdictions
 
-# Is it bullet Proof? #
+# Is it bullet Proof #
 * It is not 100% untraceable or undetectable
 * It is just less likely to be flagged out than commercial services and to be blocked
 
-# What are the risks? #
+# What are the risks #
 * Destination service can trace traffic to the VPN server on hosted provider network
 * Hosted server provider can trace the traffic between their network and your ISP network
 * ISP can trace traffic from their network to your ip and hence location
 * Once the 3 parties trace is established you are exposed
 
-# How does it work? #
+# How does it work #
 * Subscribe to any VPS (virtual private server) service and create an instance of Ubuntu 16.04 TLS: Aws, Azure, DigitalOcean, Linode, or anywhere else
 * Pick the cheapest instances available: 1 core and 0.75GB RA will do, network speed is more important and monthly traffic should be reasonable, e.g. 1TB/month
 * With Aws, Azure and other private network providers: configure inbound security groups for incoming traffic: 22 - tcp, 443 - tcp and 1194 - udp.
