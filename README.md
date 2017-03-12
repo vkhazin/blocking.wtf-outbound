@@ -59,11 +59,11 @@ cat ./client/client.conf
 ```
 exit
 ```
-* When back to your operating system, create a text file client.conf, paste the content of the clipboard into the file, and save the file
+* When back to your operating system, create a text file client.conf, paste content of the clipboard into the file, and save the file
 * Download and Install [OpenVpn Client](https://openvpn.net/index.php/open-source/downloads.html) or [Pritunl Client](https://client.pritunl.com/)
-* Using the installed import the client.conf file to connect to the newly installed Vpn Server
-* Connect and verify that all your traffic now flows through the Vpn Server by accessing http://ipinfo.io
-* http://ipinfo.io should list ip address and map of your Vpn Server location rather than you actual location
+* Using the installed software import the client.conf file to connect to the newly installed Vpn Server
+* Initiate connection and verify that all your traffic now flows through the Vpn Server by accessing http://ipinfo.io
+* http://ipinfo.io should list ip address and map of your Vpn Server location rather than your actual location
 * From that moment all traffic from you machine will be tunneled via the Vpn Server hiding your actual ip and location
 * You can also use a dd-wrt custom firmware to route all your traffic through the router
 
