@@ -116,4 +116,4 @@ sudo service ssh restart
 sudo rm ~/.ssh/authorized_keys
 ```
 * Once you logout - no one will be able to login back-in
-* Should anything go wrong - re-provision the server rather trying to fix it
+* Should anything go wrong - re-provision the server rather than trying to fix it
