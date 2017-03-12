@@ -4,9 +4,10 @@
 * By-pass Internet Service Provider, Country, Organizational, or geo-blocking
 * No more: "Sorry, access to this site is blocked!"
 * No more: "Sorry this service is not available outside of Antarctica!"
+* Pay least amount of money for the service - $5/month or less
 
 # How is it different from commercial Vpn Services? #
-* Commercial Services are well known and new can be found 
+* Commercial Services are well known and hence are easy blocked 
 * Commercial Services carry detectable patterns, e.g. volume of traffic from a single/few ips
 * Involved parties can implement automated detection and blocking processes
 * Commercial Services are subject to legal and illegal actions possibly compromising consumer security
