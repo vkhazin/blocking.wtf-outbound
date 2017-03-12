@@ -8,8 +8,21 @@ easyRsaFolder='/usr/share/easy-rsa'
 sudo mkdir /etc/openvpn
 sudo mkdir /etc/openvpn/keys
 sudo cp ./vars /etc/openvpn/vars
-sudo cp ./server.conf /etc/openvpn
 sudo cp ./dh2048.pem /etc/openvpn/keys
+#####################################################################
+
+#####################################################################
+# Configure server.conf                                         #
+#####################################################################
+sudo cp ./server.conf /etc/openvpn/server-tcp-443.conf
+echo "port 443" | sudo tee --append /etc/openvpn/server-tcp-443.conf
+echo "proto tcp-server" | sudo tee --append /etc/openvpn/server-tcp-443.conf
+echo "server 172.16.255.0 255.255.255.0" | sudo tee --append /etc/openvpn/server-tcp-443.conf
+
+sudo cp ./server.conf /etc/openvpn/server-udp-1194.conf
+echo "port 1194" | sudo tee --append /etc/openvpn/server-udp-1194.conf
+echo "proto udp" | sudo tee --append /etc/openvpn/server-udp-1194.conf
+echo "server 172.16.254.0 255.255.255.0" | sudo tee --append /etc/openvpn/server-udp-1194.conf
 #####################################################################
 
 # Update distro
@@ -79,27 +92,29 @@ sudo cp /etc/openvpn/keys/$clientId.key ./client
 sudo cp /etc/openvpn/keys/ca.crt ./client
 sudo cp /etc/openvpn/keys/ta.key ./client
 sudo curl ipinfo.io/ip > ./client/server.ip
-sudo cp ./client.conf ./client/client.conf
 
 #####################################################################
 # Configure client.conf                                             #
 #####################################################################
+serverId=`curl ipinfo.io/ip`
+sudo cp ./client.conf ./client/client.conf
 # Append server ip
-echo "remote" `curl ipinfo.io/ip` "1194 udp" >> ./client/client.conf
+echo "remote" $serverId "1194 udp" | sudo tee --append ./client/client.conf
+echo "remote" $serverId "443 tcp" | sudo tee --append ./client/client.conf
 # Append ca
-echo "<ca>" >> ./client/client.conf
-cat ./client/ca.crt >> ./client/client.conf
-echo "</ca>" >> ./client/client.conf
+echo "<ca>" | sudo tee --append ./client/client.conf
+sudo cat ./client/ca.crt | sudo tee --append ./client/client.conf
+echo "</ca>" | sudo tee --append ./client/client.conf
 # Append client cert
-echo "<cert>" >> ./client/client.conf
-cat ./client/client.crt >> ./client/client.conf
-echo "</cert>" >> ./client/client.conf
+echo "<cert>" | sudo tee --append ./client/client.conf
+sudo cat ./client/client.crt | sudo tee --append ./client/client.conf
+echo "</cert>" | sudo tee --append ./client/client.conf
 # Append client key
-echo "<key>" >> ./client/client.conf
-cat ./client/client.key >> ./client/client.conf
-echo "</key>" >> ./client/client.conf
+echo "<key>" | sudo tee --append ./client/client.conf
+sudo cat ./client/client.key | sudo tee --append ./client/client.conf
+echo "</key>" | sudo tee --append ./client/client.conf
 # Append ta
-echo "key-direction 1" >> ./client/client.conf
-echo "<tls-auth>" >> ./client/client.conf
-cat ./client/ta.key >> ./client/client.conf
-echo "</tls-auth>" >> ./client/client.conf
+echo "key-direction 1" | sudo tee --append ./client/client.conf
+echo "<tls-auth>" | sudo tee --append ./client/client.conf
+sudo cat ./client/ta.key | sudo tee --append ./client/client.conf
+echo "</tls-auth>" | sudo tee --append ./client/client.conf
