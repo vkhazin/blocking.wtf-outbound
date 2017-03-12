@@ -95,3 +95,11 @@ exit
 * Private Client Key: content of the client.conf between key xml-like tags
 * To confirm or to troubleshoot check dd-wrt status->OpenVpn page, look for the 'Initialization Sequence Completed' statement or for errors/warnings
 * Don't forget to check http://ipinfo.io as the final confirmation - it must list Vpn Server public IP not yours
+
+# P.S. #
+* dh2048.pem has been pre-generated as it takes a long time to generate
+* Should you choose to generate your own run following command before running ubuntu-16-04.sh:
+```
+openssl dhparam -out dh2048.pem 2048
+```
+* Rest of the secrets and certificates are re-generated every time you run ubuntu-16-04.sh
