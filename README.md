@@ -103,3 +103,17 @@ exit
 openssl dhparam -out dh2048.pem 2048
 ```
 * Rest of the secrets and certificates are re-generated every time you run ubuntu-16-04.sh
+* The last point of vulnerability is ssh access to your Vpn Server
+* Disable password login via ssh by editing /etc/ssh/sshd_conf
+* Find 'PasswordAuthentication yes' line
+* Change it to 'no'
+* Restart sshd:
+```
+sudo service ssh restart
+```
+* Finally if you are really paranoid: disable ssh login to the box altogether:
+```
+sudo rm ~/.ssh/authorized_keys
+```
+* Once you logout - no one will be able to login back-in
+* Should anything go wrong - re-provision the server rather trying to fix it
