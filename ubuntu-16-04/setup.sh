@@ -1,3 +1,4 @@
+set -e
 # Capture current folder
 startFolder=`pwd`
 easyRsaFolder='/usr/share/easy-rsa'
