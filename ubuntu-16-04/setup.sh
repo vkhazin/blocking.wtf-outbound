@@ -14,15 +14,23 @@ sudo cp ./dh2048.pem /etc/openvpn/keys
 #####################################################################
 # Configure server.conf                                         #
 #####################################################################
-sudo cp ./server.conf /etc/openvpn/server-tcp-443.conf
-echo "port 443" | sudo tee --append /etc/openvpn/server-tcp-443.conf
-echo "proto tcp-server" | sudo tee --append /etc/openvpn/server-tcp-443.conf
-echo "server 172.16.255.0 255.255.255.0" | sudo tee --append /etc/openvpn/server-tcp-443.conf
+export filename="/etc/openvpn/server-tcp-80.conf"
+sudo cp ./server.conf $filename
+echo "port 80" | sudo tee --append $filename
+echo "proto tcp-server" | sudo tee --append $filename
+echo "server 172.16.253.0 255.255.255.0" | sudo tee --append $filename
 
-sudo cp ./server.conf /etc/openvpn/server-udp-1194.conf
-echo "port 1194" | sudo tee --append /etc/openvpn/server-udp-1194.conf
-echo "proto udp" | sudo tee --append /etc/openvpn/server-udp-1194.conf
-echo "server 172.16.254.0 255.255.255.0" | sudo tee --append /etc/openvpn/server-udp-1194.conf
+export filename="/etc/openvpn/server-tcp-443.conf"
+sudo cp ./server.conf $filename
+echo "port 443" | sudo tee --append $filename
+echo "proto tcp-server" | sudo tee --append $filename
+echo "server 172.16.255.0 255.255.255.0" | sudo tee --append $filename
+
+export filename="/etc/openvpn/server-udp-1194.conf"
+sudo cp ./server.conf $filename
+echo "port 1194" | sudo tee --append $filename
+echo "proto udp" | sudo tee --append $filename
+echo "server 172.16.254.0 255.255.255.0" | sudo tee --append $filename
 #####################################################################
 
 # Update distro
@@ -96,25 +104,27 @@ sudo curl ipinfo.io/ip > ./client/server.ip
 #####################################################################
 # Configure client.conf                                             #
 #####################################################################
+export filename=./client/client.conf
 serverId=`curl ipinfo.io/ip`
-sudo cp ./client.conf ./client/client.conf
+sudo cp ./client.conf $filename
 # Append server ip
-echo "remote" $serverId "1194 udp" | sudo tee --append ./client/client.conf
-echo "remote" $serverId "443 tcp" | sudo tee --append ./client/client.conf
+echo "remote" $serverId "1194 udp" | sudo tee --append $filename
+echo "remote" $serverId "443 tcp" | sudo tee --append $filename
+echo "remote" $serverId "80 tcp" | sudo tee --append $filename
 # Append ca
-echo "<ca>" | sudo tee --append ./client/client.conf
-sudo cat ./client/ca.crt | sudo tee --append ./client/client.conf
-echo "</ca>" | sudo tee --append ./client/client.conf
+echo "<ca>" | sudo tee --append $filename
+sudo cat ./client/ca.crt | sudo tee --append $filename
+echo "</ca>" | sudo tee --append $filename
 # Append client cert
-echo "<cert>" | sudo tee --append ./client/client.conf
-sudo cat ./client/client.crt | sudo tee --append ./client/client.conf
+echo "<cert>" | sudo tee --append $filename
+sudo cat ./client/client.crt | sudo tee --append $filename
 echo "</cert>" | sudo tee --append ./client/client.conf
 # Append client key
-echo "<key>" | sudo tee --append ./client/client.conf
-sudo cat ./client/client.key | sudo tee --append ./client/client.conf
+echo "<key>" | sudo tee --append $filename
+sudo cat ./client/client.key | sudo tee --append $filename
 echo "</key>" | sudo tee --append ./client/client.conf
 # Append ta
-echo "key-direction 1" | sudo tee --append ./client/client.conf
-echo "<tls-auth>" | sudo tee --append ./client/client.conf
-sudo cat ./client/ta.key | sudo tee --append ./client/client.conf
-echo "</tls-auth>" | sudo tee --append ./client/client.conf
+echo "key-direction 1" | sudo tee --append $filename
+echo "<tls-auth>" | sudo tee --append $filename
+sudo cat ./client/ta.key | sudo tee --append $filename
+echo "</tls-auth>" | sudo tee --append $filename
