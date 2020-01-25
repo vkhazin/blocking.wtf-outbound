@@ -83,6 +83,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 sudo iptables -A FORWARD -i eth0 -o tun0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -i tun0 -o eth0 -j ACCEPT
+sudo mkdir /etc/iptables
 sudo bash -c "iptables-save > /etc/iptables/rules.v4"
 # Persist nat rules
 echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
