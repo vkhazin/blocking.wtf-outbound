@@ -108,7 +108,7 @@ sudo curl ipinfo.io/ip > ./client/server.ip
 #####################################################################
 export filename="./client/client.conf"
 serverId=`curl ipinfo.io/ip`
-sudo cp $filename ./client.conf
+sudo cp ./client.conf $filename
 # Append server ip
 echo "remote" $serverId "1194 udp" | sudo tee --append $filename
 echo "remote" $serverId "443 tcp" | sudo tee --append $filename
